@@ -1,0 +1,107 @@
+<!-- Wrapper con scroll horizontal para pantallas pequeñas -->
+<section class="mt-5 overflow-x-auto">
+  <table class="table table-md mt-5 w-full">
+    <thead>
+      <tr>
+        <th class="hidden sm:table-cell">#</th>
+        <!-- Oculto en móvil -->
+        <th class="hidden sm:table-cell">icono</th>
+        <!-- Oculto en móvil -->
+        <th>Bandera</th>
+        <!-- Siempre visible -->
+        <th>Nombre</th>
+        <!-- Siempre visible -->
+        <th class="hidden md:table-cell">Capital</th>
+        <!-- Visible desde md -->
+        <th class="hidden lg:table-cell">Población</th>
+        <!-- Visible desde lg -->
+        <th>Información</th>
+        <!-- Siempre visible -->
+      </tr>
+    </thead>
+    <tbody>
+      @for (country of countries(); track country.cca2; let index = $index) {
+      <tr class="hover:bg-base-200">
+        <td class="hidden sm:table-cell">{{ index + 1 }}</td>
+        <td class="hidden sm:table-cell">{{ country.flag }}</td>
+        <td>
+          <img
+            [src]="country.flagSvg"
+            [alt]="country.name"
+            class="w-8 h-8 md:w-10 md:h-10"
+          />
+        </td>
+        <td class="whitespace-nowrap max-w-[100px] md:max-w-[200px] truncate">
+          {{ country.name }}
+          <!-- Tooltip para nombres truncados -->
+          <span
+            class="tooltip tooltip-bottom md:hidden"
+            [attr.data-tip]="country.name"
+            >ℹ️</span
+          >
+          <!-- Muestra capital en móvil como subtext -->
+          <p class="text-xs text-gray-500 md:hidden">{{ country.capital }}</p>
+        </td>
+        <td class="hidden md:table-cell">
+          {{ country.capital }}
+        </td>
+        <td class="hidden lg:table-cell">
+          <span
+            class="badge badge-accent text-center align-middle text-xs md:text-sm"
+          >
+            {{ country.population | number }}
+          </span>
+        </td>
+        <td>
+          <a
+            [routerLink]="['/country/by', country.cca2]"
+            class="btn btn-xs btn-primary md:btn-sm"
+          >
+            + info
+          </a>
+        </td>
+      </tr>
+      }
+
+      <!-- Estados de carga, error, etc. -->
+      @if (errorMEssage()) {
+      <tr>
+        <td colspan="7" class="text-center">
+          <h3 class="text-xl md:text-2xl">{{ errorMEssage() }}</h3>
+        </td>
+      </tr>
+      } @if (countries().length === 0 && !isLoading()) {
+      <tr>
+        <td colspan="7" class="text-center">
+          <h3 class="text-xl md:text-2xl">No hay resultados</h3>
+        </td>
+      </tr>
+      } @if (isLoading()) {
+      <tr>
+        <td colspan="7" class="text-center p-4">
+          <svg
+            class="animate-spin h-6 w-6 md:h-8 md:w-8 text-blue-600 mx-auto"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+            ></path>
+          </svg>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</section>

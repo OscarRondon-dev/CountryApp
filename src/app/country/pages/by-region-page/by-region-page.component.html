@@ -1,0 +1,29 @@
+<!-- Botones de navegación -->
+
+<section class="flex flex-wrap gap-2 mb-5">
+  @for (region of regions; track region) {
+  <button
+    class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+    [class.btn-active]="selectedRegion() === region"
+    [class.btn-secondary]="selectedRegion() === region"
+    (click)="selectRegion(region)"
+  >
+    {{ region }}
+    <!-- Solo para depuración -->
+    <span class="hidden">{{
+      selectedRegion() === region ? "true" : "false"
+    }}</span>
+  </button>
+  }
+</section>
+
+<!-- Para depuración: mostrar la región seleccionada -->
+<div class="text-sm mb-4">Región seleccionada: "{{ selectedRegion() }}"</div>
+
+<!-- Lista de países por región -->
+<country-list
+  [countries]="countriesByRegion.value() ?? []"
+  [errorMEssage]="countriesByRegion.error()"
+  [isEmpty]="countriesByRegion.value()?.length === 0"
+  [isLoading]="countriesByRegion.isLoading()"
+/>

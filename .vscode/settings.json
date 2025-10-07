@@ -1,0 +1,17 @@
+{
+  "cSpell.words": [
+    "batchcomplete",
+    "daisyui",
+    "exintro",
+    "explaintext",
+    "exsentences",
+    "restcountries",
+    "tailwindcss"
+  ],
+  "angular-schematics.schematicsDefaultOptions": {
+    "angular-*": {
+      "externalTemplate": true,
+      "skipStyle": true
+    }
+  }
+}
