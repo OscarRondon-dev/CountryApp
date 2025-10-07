@@ -22,7 +22,7 @@ Además, para cada país puedes consultar un **resumen de Wikipedia** integrado,
 ## 📸 Vista previa
 
 <div align="center">
-  <img src="public/aplciacion ciberseguridad.png" alt="Vista previa CountryApp" width="600" style="border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.15);" />
+  <img src="public/Fondo Country_app.jpg" alt="Vista previa CountryApp" width="600" style="border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.15);" />
 </div>
 
 ---
